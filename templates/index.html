@@ -13,6 +13,7 @@
   <!-- Additional Scripts -->
   {% block scripts %}
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="{{url_for('static', filename='loading.js')}}"></script>
   {% endblock %}
 
@@ -24,11 +25,36 @@
   <main class="p-2">
   <h1>Homepage</h1>
 
-  <button class="h-12 w-24 bg-orange-500 rounded-md text-white" onclick="handleSubmit(event)">
-    Post
+  <button class="h-12 w-24 bg-orange-500 rounded-md text-white" onclick="worker()">
+    {{thread_id}}
+  </button>
+  
+  <button class="h-12 w-24 bg-blue-500 rounded-md text-white" onclick="redirect()">
+    redirect to {{thread_id}}
   </button>
 
+  <div id="progress_bar" class="bg-red-500 h-12 w-24">
+  </div>
+
   </main>
+
+  <script>
+    function redirect() {
+      window.location = `/progress/{{thread_id}}`
+    }
+      
+      function worker() {
+        let task_id = "{{thread_id}}"
+        console.log("asdf")
+          $.get('progress/' + task_id, function(data) {
+              if (progress < 100) {
+                  progress_bar.innerText(progress)
+
+                  setTimeout(worker, 1000)
+              }
+          })
+}
+  </script>
 
 </body>
 </html>
