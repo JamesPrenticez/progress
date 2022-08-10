@@ -25,15 +25,18 @@
   <main class="p-2">
   <h1>Homepage</h1>
 
-  <button class="h-12 w-24 bg-orange-500 rounded-md text-white" onclick="worker()">
-    {{thread_id}}
-  </button>
-  
-  <button class="h-12 w-24 bg-blue-500 rounded-md text-white" onclick="redirect()">
-    redirect to {{thread_id}}
-  </button>
+  <div class="flex">
+    <button class="h-12 w-24 bg-orange-500 rounded-md text-white" onclick="worker()">
+      Worker
+    </button>
+    
+    <button class="h-12 w-24 bg-blue-500 rounded-md text-white" onclick="redirect()">
+      redirect to {{thread_id}}
+    </button>
+  </div>
 
-  <div id="progress_bar" class="bg-red-500 h-12 w-24">
+  <div id="progress_bar" class="bg-blue-500 h-6 w-64 text-white mt-6">
+    0%
   </div>
 
   </main>
@@ -47,8 +50,9 @@
         let task_id = "{{thread_id}}"
         console.log("asdf")
           $.get('progress/' + task_id, function(data) {
-              if (progress < 100) {
-                  progress_bar.innerText(progress)
+            console.log(data)
+              if (data < 100) {
+                  progress_bar.innerText = data
 
                   setTimeout(worker, 1000)
               }

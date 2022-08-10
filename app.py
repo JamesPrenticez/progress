@@ -12,7 +12,7 @@ class ExportingThread(threading.Thread):
 
     def run(self):
         # Your exporting stuff goes here ...
-        for _ in range(100000):
+        for _ in range(10):
             time.sleep(1)
             self.progress += 10
 
@@ -33,6 +33,8 @@ def index():
     return render_template('index.html', thread_id=thread_id)
 
 
+
+
 @app.route('/progress/<int:thread_id>')
 def progress(thread_id):
     global exporting_threads
@@ -42,3 +44,6 @@ def progress(thread_id):
 
 if __name__ == '__main__':
     app.run()
+
+## Threading 
+## https://stackoverflow.com/questions/24251898/flask-app-update-progress-bar-while-function-runs
