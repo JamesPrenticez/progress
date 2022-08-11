@@ -1,0 +1,128 @@
+
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- <script src="/static/progress.js"></script> -->
+
+
+<div class='flex flex-col space-y-4 p-4'>
+ <div class='w-full h-10 bg-gray-300 rounded-full'>
+  <div id="progressBar" class="h-10 rounded-full transition ease-in-out"
+   style="width: 0%; background-color: #007FFF; transition: width .1s ease-in-out;">
+  </div>
+  <p id="progressText" class='text-white text-[2rem] leading-[0rem] -mt-[1.25rem] text-center'>
+   0 %
+  </p>
+ </div>
+
+ 
+ <script>
+  progressBar.style.width = "0" + "%"
+  progressText.innerText = "0" + "%"
+
+  if("0" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "10" + "%"
+  progressText.innerText = "10" + "%"
+
+  if("10" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "20" + "%"
+  progressText.innerText = "20" + "%"
+
+  if("20" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "30" + "%"
+  progressText.innerText = "30" + "%"
+
+  if("30" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "40" + "%"
+  progressText.innerText = "40" + "%"
+
+  if("40" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "50" + "%"
+  progressText.innerText = "50" + "%"
+
+  if("50" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "60" + "%"
+  progressText.innerText = "60" + "%"
+
+  if("60" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "70" + "%"
+  progressText.innerText = "70" + "%"
+
+  if("70" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "80" + "%"
+  progressText.innerText = "80" + "%"
+
+  if("80" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "90" + "%"
+  progressText.innerText = "90" + "%"
+
+  if("90" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+ <script>
+  progressBar.style.width = "100" + "%"
+  progressText.innerText = "100" + "%"
+
+  if("100" === "100"){
+   window.location = '/'
+  }
+
+ </script>
+ 
+
+</div>

@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" initial-scale="1" shrink-to-fit="no" user-scalable="no">
-  <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}">
   <title>{% block title %}{% endblock %}</title> 
   
   <!-- Styles -->
@@ -26,38 +25,56 @@
   <h1>Homepage</h1>
 
   <div class="flex">
-    <button class="h-12 w-24 bg-orange-500 rounded-md text-white" onclick="worker()">
-      Worker
-    </button>
-    
-    <button class="h-12 w-24 bg-blue-500 rounded-md text-white" onclick="redirect()">
-      redirect to {{thread_id}}
+    <button id="start" class="h-12 w-24 bg-green-500 rounded-md text-white" onclick="start()">
+      start
     </button>
   </div>
 
-  <div id="progress_bar" class="bg-blue-500 h-6 w-64 text-white mt-6">
+  <p id="new_process">None</p>
+
+  <div id="progress_bar" class="bg-blue-500 h-6 w-64 text-white mt-6 text-center">
     0%
   </div>
 
   </main>
 
   <script>
-    function redirect() {
-      window.location = `/progress/{{thread_id}}`
-    }
-      
-      function worker() {
-        let task_id = "{{thread_id}}"
-        console.log("asdf")
-          $.get('progress/' + task_id, function(data) {
-            console.log(data)
-              if (data < 100) {
-                  progress_bar.innerText = data
+    let thread_id
 
-                  setTimeout(worker, 1000)
-              }
-          })
-}
+    function start(){
+      fetch('/start', {
+          method: 'get'
+      }).then((response) => {
+        return response.json()
+      }).then(data => {
+
+        new_process.innerText = "new thread created:" + data.thread_id
+
+
+
+        thread_id = data.thread_id
+        update_progress_bar()
+
+      }).catch((err) => {
+        console.log("Error:"+ err)
+      })
+    }
+
+      
+    function update_progress_bar() {
+      let x = thread_id
+      $.get(`progress/${x}`, function(data) {
+          if (data < 100) {
+              console.log(data)
+              progress_bar.innerText = data + "%"
+              setTimeout(update_progress_bar, 100)
+            }
+            else {
+            progress_bar.innerText = "complete"
+            window.location = `/progress/${x}`
+          }
+      })
+    }
   </script>
 
 </body>
